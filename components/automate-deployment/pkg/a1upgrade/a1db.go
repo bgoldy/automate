@@ -162,13 +162,14 @@ type A1Database struct {
 
 func (db A1Database) toExporter(connInfo pg.ConnInfo, timeout time.Duration) pg.DatabaseExporter {
 	return pg.DatabaseExporter{
-		Name:           db.name,
-		ExcludedTables: db.excludedTables,
-		IncludedTables: db.includedTables,
-		ConnInfo:       connInfo,
-		DataDir:        PGDumpOutputDir,
-		CmdExecutor:    command.NewExecExecutor(),
-		Timeout:        timeout,
+		Name:            db.name,
+		ExcludedTables:  db.excludedTables,
+		IncludedTables:  db.includedTables,
+		ConnInfo:        connInfo,
+		DataDir:         PGDumpOutputDir,
+		CmdExecutor:     command.NewExecExecutor(),
+		Timeout:         timeout,
+		UseCustomFormat: true,
 	}
 }
 
